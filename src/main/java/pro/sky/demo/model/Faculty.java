@@ -14,10 +14,6 @@ public class Faculty {
     private String name;
     private String color;
 
-    public Faculty() {
-    }
-
-
     @JsonBackReference
     @OneToMany(mappedBy = "faculty")
     private List<Student> studentList;

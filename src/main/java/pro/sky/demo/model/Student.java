@@ -12,19 +12,16 @@ public class Student {
     private String name;
     private int age;
 
-    public Student() {
-    }
-
     @ManyToOne
     @JoinColumn(name="faculty_id")  // для создания новой колонки
-    private Faculty faculty;
+    private Faculty faculties;
 
     public Faculty getFaculties() {
-        return faculty;
+        return faculties;
     }
 
     public void setFaculties(Faculty faculties) {
-        this.faculty = faculties;
+        this.faculties = faculties;
     }
 
     public Long getId() {
@@ -74,3 +71,4 @@ public class Student {
     }
 
 }
+
