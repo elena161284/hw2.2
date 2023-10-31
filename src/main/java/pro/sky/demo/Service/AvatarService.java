@@ -3,6 +3,7 @@ package pro.sky.demo.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import pro.sky.demo.Exception.StudentFindException;
 import pro.sky.demo.model.Avatar;
 import pro.sky.demo.model.Student;
 import pro.sky.demo.repositories.AvatarRepository;
@@ -31,7 +32,7 @@ public class AvatarService {
     public void upload(Long studentId, MultipartFile file) throws IOException {
         var student = studentRepository
                 .findById(studentId)
-                .orElseThrow(StudentNotFindException::new);
+                .orElseThrow(StudentFindException::new);
 
         var dir = Path.of(avatarsDir);
         if (!dir.toFile().exists()) {

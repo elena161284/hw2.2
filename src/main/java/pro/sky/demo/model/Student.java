@@ -16,6 +16,10 @@ public class Student {
     @JoinColumn(name="faculty_id")  // для создания новой колонки
     private Faculty faculties;
 
+    public Student(Long id,String name,int age) {
+
+    }
+
     public Faculty getFaculties() {
         return faculties;
     }
