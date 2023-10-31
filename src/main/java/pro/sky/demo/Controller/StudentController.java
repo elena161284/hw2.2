@@ -2,6 +2,7 @@ package pro.sky.demo.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pro.sky.demo.Exception.StudentFindException;
 import pro.sky.demo.Service.StudentService;
 import pro.sky.demo.model.Student;
 
