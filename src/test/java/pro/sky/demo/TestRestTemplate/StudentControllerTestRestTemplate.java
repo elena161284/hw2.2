@@ -20,7 +20,7 @@ public class StudentControllerTestRestTemplate {
     @Test
     public void testGetStudentById() throws Exception {
         Assertions
-                .assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/student" + "/by-id", String.class))
+                .assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/student", String.class))
                 .isNotNull();
     }
 

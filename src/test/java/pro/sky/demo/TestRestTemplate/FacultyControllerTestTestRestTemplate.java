@@ -46,7 +46,7 @@ public class FacultyControllerTestTestRestTemplate {
     @Test
     public void testGetFacultyByNameOrColor() throws Exception {
         Assertions
-                .assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/faculty" + "/by-name-or-color", String.class))
+                .assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/faculty" + "/byNameOrColor", String.class))
                 .isNotNull();
     }
 
