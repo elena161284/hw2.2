@@ -7,10 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pro.sky.demo.Service.AvatarService;
+import pro.sky.demo.model.Avatar;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/avatar")
@@ -53,5 +55,10 @@ public class AvatarController {
             response.setContentLength(Math.toIntExact(avatar.getFileSize()));
         }
         response.setStatus(HttpStatus.NOT_FOUND.value());
+    }
+    @GetMapping
+    public Collection<Avatar> findAvatars(@RequestParam int page,
+                                  @RequestParam int pageSize) {
+        return service.find(page-1, pageSize); //чтобы получить 0
     }
 }

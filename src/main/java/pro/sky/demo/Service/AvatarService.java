@@ -1,6 +1,7 @@
 package pro.sky.demo.Service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pro.sky.demo.Exception.StudentFindException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.rmi.RemoteException;
+import java.util.Collection;
 
 @Service
 public class AvatarService {
@@ -64,5 +66,9 @@ public class AvatarService {
 
     public Avatar find(long studentId) {
         return avatarRepository.findByStudentId(studentId).orElse(null);
+    }
+
+    public Collection<Avatar> find(int page, int pageSize) {
+    return avatarRepository.findAll(PageRequest.of(page, pageSize)).getContent();
     }
 }

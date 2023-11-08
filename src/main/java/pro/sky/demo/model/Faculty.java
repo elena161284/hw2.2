@@ -18,8 +18,6 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     private List<Student> studentList;
 
-    public Faculty(Long id,String name,String color) {
-    }
 
     public List<Student> getStudentList() {
         return studentList;

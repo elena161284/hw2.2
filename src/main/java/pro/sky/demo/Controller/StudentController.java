@@ -2,7 +2,6 @@ package pro.sky.demo.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pro.sky.demo.Exception.StudentFindException;
 import pro.sky.demo.Service.StudentService;
 import pro.sky.demo.model.Student;
 
@@ -17,22 +16,22 @@ public class StudentController {
         this.studentService = studentService;
     }
     @GetMapping("{id}")
-    public Student getInfo(@PathVariable long id) {
-        return studentService.findStudent(id);
+    public Student get(@PathVariable long id) {
+        return studentService.get(id);
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student); // добали студента в список
+    public Student add(@RequestBody Student student) {
+        return studentService.add(student); // добали студента в список
     }
     @PutMapping
-    public Student editStudent(@RequestBody Student student) {
-        return studentService.editStudent(student);
+    public Student update(@RequestBody Student student) {
+        return studentService.update(student);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteStudent(@PathVariable Long id) {
-        studentService.deletedStudent(id);
+    public ResponseEntity remove(@PathVariable Long id) {
+        studentService.remove(id);
         return ResponseEntity.ok().build();
     }
     @GetMapping("/byAge") // localhost:8080/student/byAge?age=15
@@ -41,7 +40,7 @@ public class StudentController {
     }
     @GetMapping("/byName")
     public  Collection<Student> byName(@RequestParam String name) {
-        return studentService.filterByName(name);
+        return studentService.filterAllByName(name);
     }
     @GetMapping("/byAll")
     public Collection<String> byAll (){
@@ -51,5 +50,16 @@ public class StudentController {
     public  Collection<Student> byAgeBetween(@RequestParam int min, @RequestParam int max) {
         return studentService.filterByAgeBetween(min, max);
     }
-
+    @GetMapping("/count")
+    public  long getCountOfStudents() {
+        return studentService.studentsCount();
+    }
+    @GetMapping("/avgAge")
+    public  double getAverageAge() {
+        return studentService.averageAge();
+    }
+    @GetMapping("/lastfive")
+    public  Collection<Student> getLastFiveStudents() {
+        return studentService.lastFiveStudents();
+    }
 }

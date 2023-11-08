@@ -15,26 +15,27 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
     @GetMapping("{id}")
-    public Faculty getInfo(@PathVariable long id) {
-        return facultyService.findFaculty(id);
+    public Faculty get(@PathVariable long id) {
+        return facultyService.get(id);
     }
     @PostMapping
-    public Faculty createFaculty(@RequestBody Faculty faculty){
-        return facultyService.createFaculty(faculty);
+    public Faculty add(@RequestBody Faculty faculty){
+        return facultyService.add(faculty);
     }
     @PutMapping()
-    public Faculty editFaculty(@RequestBody Faculty faculty) {
-        return facultyService.editFaculty(faculty);
+    public Faculty update(@RequestBody Faculty faculty) {
+        return facultyService.update(faculty);
     }
     @DeleteMapping("{id}")
-    public Faculty deletedFaculty(@PathVariable Long id) {
-        return facultyService.deletedFaculty(id);
+    public Faculty remove(@PathVariable Long id) {
+        return facultyService.remove(id);
     }
-    @GetMapping("/byNameOrColorIgnoreCase")
-    public Collection<Faculty> byNameOrColorIgnoreCase(
-            @RequestParam(required = false) String color,
-            @RequestParam(required = false) String name)
+
+    @GetMapping("/byNameOrColor")
+    public Collection<Faculty> byNameOrColor(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String color)
     {
-        return facultyService.filterByNameOrColor(color, name);
+        return facultyService.filterByNameOrColor(name, color);
     }
 }

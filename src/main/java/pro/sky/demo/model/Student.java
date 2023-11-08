@@ -1,5 +1,4 @@
 package pro.sky.demo.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -15,10 +14,6 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="faculty_id")  // для создания новой колонки
     private Faculty faculties;
-
-    public Student(Long id,String name,int age) {
-
-    }
 
     public Faculty getFaculties() {
         return faculties;

@@ -15,21 +15,21 @@ public class StudentService {
         this.repository = repository;
     }
 
-    public Student createStudent(Student student) {
+    public Student add(Student student) {
         return repository.save(student); // добавили
     }
 
-    public Student findStudent(long id) {
+    public Student get(long id) {
         return repository.findById(id).orElse(null); // вывели
     }
 
-    public Student editStudent(Student student) {
+    public Student update(Student student) {
         return repository.findById(student.getId())
                 .map(entity -> repository.save(student))
                 .orElse(null);
     }
 
-    public Student deletedStudent(long id) {
+    public Student remove(long id) {
         var entity = repository.findById(id).orElse(null);
         if (entity != null) {
             repository.delete(entity);
@@ -37,10 +37,10 @@ public class StudentService {
         return entity; // удалили
     }
     public Collection<Student> filterByAge(int age) {
-        return repository.findAllByAge(age);
+        return repository.findByAge(age);
     }
 
-    public Collection<Student> filterByName(String name) {
+    public Collection<Student> filterAllByName(String name) {
         return repository.findAllByName(name);
     }
 
@@ -51,5 +51,15 @@ public class StudentService {
     public Collection<Student> filterByAgeBetween(int min, int max) {
         return repository.findAllByAgeBetween(min, max);
     }
+    public long studentsCount() {
+        return repository.getStudentCount();
+    }
 
+    public double averageAge() {
+        return repository.getAverageAge();
+    }
+
+    public Collection<Student> lastFiveStudents() {
+        return repository.getLastFiveStudents();
+    }
 }

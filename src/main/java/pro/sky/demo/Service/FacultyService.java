@@ -14,21 +14,21 @@ public class FacultyService {
         this.repository = repository;
     }
 
-    public Faculty createFaculty(Faculty faculty) {
+    public Faculty add(Faculty faculty) {
         return repository.save(faculty); // добавили
     }
 
-    public Faculty findFaculty(long id) {
+    public Faculty get(long id) {
         return repository.findById(id).orElse(null); // вывели
     }
 
-    public Faculty editFaculty(Faculty faculty) {
-        return repository.findById(faculty.getId())
-                .map(entity -> repository.save(faculty))
-                .orElse(null);
+    public Faculty update(Faculty faculty) {
+        return repository.findById(faculty.getId()) //если нашли
+                .map(entity -> repository.save(faculty))// то обновляем
+                .orElse(null); // или нал(возвращается обноаленная сущность)
     }
 
-    public Faculty deletedFaculty(long id) {
+    public Faculty remove(long id) {
         var entity = repository.findById(id).orElse(null);
         if (entity != null) {
             repository.delete(entity);
@@ -36,8 +36,7 @@ public class FacultyService {
         return entity; // удалили
     }
 
-    public Collection<Faculty> filterByNameOrColor(String name, String color) {
-        return repository.findAllByNameOrColorIgnoreCase(name,color);
+    public Collection<Faculty> filterByNameOrColor(String color, String name) {
+        return repository.findAllByNameOrColorIgnoreCase(color, name);
     }
-
 }

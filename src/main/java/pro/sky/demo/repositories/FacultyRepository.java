@@ -10,5 +10,6 @@ public interface FacultyRepository extends JpaRepository<Faculty, Long> {
 
     Collection<Faculty> findAllByNameOrColorIgnoreCase(String name, String color);
 
+
 }
 
