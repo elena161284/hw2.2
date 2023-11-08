@@ -1,14 +1,15 @@
-create table  person(
-                     id serial primari key,
-                     name varchar(225),
-                     age int,
-                     vehicle_owner boolean);
-
 create table vehicle(
                      id serial primari key,
                      brand varchar(225),
                      model varchar(225),
                      cost money);
+
+create table  persons(
+                     id serial primari key,
+                     name varchar(225),
+                     age int,
+                     vehicle_owner boolean);
+
 
 alter table person add column vehicle_id serial;
 alter table vehicle add constraint unique_vehicle unique(model);
