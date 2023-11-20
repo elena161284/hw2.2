@@ -1,5 +1,7 @@
 package pro.sky.demo.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import java.util.Collection;
 
 @Service
 public class AvatarService {
+    private final static Logger logger = LoggerFactory.getLogger(AvatarService.class);
+
     private final String avatarsDir;
     private final StudentRepository studentRepository;
     private final AvatarRepository avatarRepository;
@@ -32,9 +36,10 @@ public class AvatarService {
     }
 
     public void upload(Long studentId, MultipartFile file) throws IOException {
+        logger.info("назван с аргументом {}:{}",studentId,file);
         var student = studentRepository
                 .findById(studentId)
-                .orElseThrow(StudentFindException::new);
+                .orElseThrow(()->new StudentFindException("studentId with file"));
 
         var dir = Path.of(avatarsDir);
         if (!dir.toFile().exists()) {

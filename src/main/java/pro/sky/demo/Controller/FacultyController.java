@@ -38,4 +38,9 @@ public class FacultyController {
     {
         return facultyService.filterByNameOrColor(name, color);
     }
+
+    @GetMapping("/theLongestName")
+    public String theLongestName() {
+        return facultyService.getTheLongestFacultyName();
+    }
 }

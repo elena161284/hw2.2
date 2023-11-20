@@ -9,6 +9,7 @@ import pro.sky.demo.repositories.StudentRepository;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -77,5 +78,23 @@ public class StudentService {
     public Collection<Student> lastFiveStudents() {
         logger.info(" был назван lastFiveStudents");
         return repository.getLastFiveStudents();
+    }
+    public Collection<String> getStudentsNameStartsA() {
+        return repository.findAll()
+                .stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(upperCase->upperCase.startsWith("A"))
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public double streamAverageAge() {
+        return repository.findAll()
+                .stream()
+                .map(Student::getName)
+                .mapToInt(Integer::parseInt)
+                .average()
+                .orElse(0d);
     }
 }

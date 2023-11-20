@@ -7,6 +7,7 @@ import pro.sky.demo.model.Faculty;
 import pro.sky.demo.repositories.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 @Service
 public class FacultyService {
@@ -47,5 +48,13 @@ public class FacultyService {
     public Collection<Faculty> filterByNameOrColor(String color, String name) {
         logger.info("назван filterByNameOrColor с аргументом {}:{}",color,name);
         return repository.findAllByNameOrColorIgnoreCase(color, name);
+    }
+
+    public String getTheLongestFacultyName() {
+        return repository.findAll()
+                .stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
     }
 }
