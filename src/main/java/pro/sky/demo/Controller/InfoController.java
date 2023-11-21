@@ -26,12 +26,12 @@ public class InfoController {
         return port;
     }
 
-    @GetMapping
+    @GetMapping("/test")
     public int test() {
         long startTime = System.currentTimeMillis();
        // int a = Integer.valueOf(5); перевели Integer в приметив
         int sum = IntStream.iterate(1, a -> a + 1).limit(1_000_000).reduce(0, (a, b) -> a + b);
-        logger.info("Elapsed: {}",System.currentTimeMillis()-startTime);
+        logger.info("Elapsed: {}");
         return sum;
     }
 }
