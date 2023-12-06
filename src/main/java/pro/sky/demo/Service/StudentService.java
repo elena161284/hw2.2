@@ -69,8 +69,15 @@ public class StudentService {
         return repository.findAllByAgeBetween(min, max);
     }
     public long studentsCount() {
-        logger.error(" был назван studentsCount");
-        return repository.getStudentCount();
+        try {
+            if (true) {
+                throw new RuntimeException("DB Error!");
+            }
+            return repository.getStudentCount();
+        } catch (RuntimeException e) {
+            logger.error("Cannot get count of students", e);
+        }
+        return -1;
     }
 
     public double averageAge() {
